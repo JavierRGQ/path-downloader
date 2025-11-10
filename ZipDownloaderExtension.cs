@@ -14,8 +14,8 @@ namespace SwarmExtensions.ZipDownloader
         public ZipDownloaderExtension()
         {
             ExtensionName = "ZipDownloaderExtension";
-            // Si SwarmUI tiene ScriptFiles.Add, úsalo para registrar el JS
-            ScriptFiles.Add("ZipDownloader.js");
+            // Registrar el JS correctamente en la carpeta assets
+            ScriptFiles.Add("assets/ZipDownloader.js");
         }
 
         // Método público para comprimir y descargar output
