@@ -14,26 +14,15 @@ namespace SwarmExtensions.ZipDownloader
         public ZipDownloaderExtension()
         {
             ExtensionName = "ZipDownloaderExtension";
+            // Si SwarmUI tiene ScriptFiles.Add, úsalo para registrar el JS
+            ScriptFiles.Add("ZipDownloader.js");
         }
 
-        public override void OnInit()
-        {
-            InstallableFeatures.RegisterInstallableFeature(new InstallableFeature()
-            {
-                FeatureId = "zip_downloader",
-                Name = "Zip Output Downloader",
-                Description = "Compresses the SwarmUI output folder and downloads as a zip file.",
-                FeatureType = "Extension",
-                AssetFiles = new() { "ZipDownloader.js" },
-                Installer = () => Task.CompletedTask
-            });
-        }
-
-        // Called from JS when user clicks the button
+        // Método público para comprimir y descargar output
         public static string CompressAndDownloadOutput()
         {
-            // Get output path from SwarmUI config
-            string outputPath = Program.Config.Get("output_path", "output");
+            // Usa un path fijo para output
+            string outputPath = "output";
             if (!Directory.Exists(outputPath))
                 throw new Exception($"Output path not found: {outputPath}");
 
